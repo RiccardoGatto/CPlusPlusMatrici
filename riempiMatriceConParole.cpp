@@ -211,8 +211,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     cin >> coordX;
     cin >> coordY;*/
     cout << coordX << "   " << coordY << endl;
-    // int dir = rand() % 8;
-    int dir = 2;
+    int dir = rand() % 3;
+    //int dir = 2;
     switch (dir)
     {
     case 0:
