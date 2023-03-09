@@ -4,7 +4,7 @@ using namespace std;
 const int righe = 10;
 const int colonne = 10;
 
-void riempiMat(int mat[][colonne], int rig, int col)
+void riempiMatCasuali(int mat[][colonne], int rig, int col)
 {
     for (int i = 0; i < rig; i++)
     {
@@ -100,7 +100,7 @@ void diagonaleNove(int mat[][colonne], int rig, int col)
 int main()
 {
     int matrice[righe][colonne];
-    riempiMat(matrice, righe, colonne);
+    riempiMatCasuali(matrice, righe, colonne);
     stampaTrattini(colonne);
     stampaMat(matrice, righe, colonne);
     cout << "______________________________________________________\n\n";
@@ -113,7 +113,7 @@ int main()
     stampaTrattini(colonne);
     stampaMat(matrice, righe, colonne);
     cout << "______________________________________________________\n\n";
-    riempiMat(matrice, righe, colonne);
+    riempiMatCasuali(matrice, righe, colonne);
     stampaTrattini(colonne);
     stampaMat(matrice, righe, colonne);
 }
