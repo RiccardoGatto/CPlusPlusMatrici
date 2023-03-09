@@ -6,12 +6,17 @@ using namespace std;
 const int righe = 10;
 const int colonne = 10;
 
-void putE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putE(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
 {
+
     // cout << "Inserisco a E" << endl;
-    if (x <= (col - word.length()))
+    if (x > (col - word.length()))
     {
-        bool check = true;
+        return false;
+    }
+    else
+    {
+        bool check;
         for (int i = x; i < x + word.length(); i++)
         {
             if (mat[y][i] == word.at(i - x) || mat[y][i] == '-')
@@ -25,20 +30,24 @@ void putE(string word, int x, int y, char mat[][colonne], int rig, int col)
             }
         }
         if (check)
-
         {
             for (int i = x; i < x + word.length(); i++)
             {
                 mat[y][i] = word.at(i - x);
             }
         }
+        return check;
     }
 }
 
-void putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
 {
-    cout << "Inserisco a SE" << endl;
-    if ((x <= (col - word.length())) and (y <= (rig - word.length())))
+    // cout << "Inserisco a SE" << endl;
+    if ((x > (col - word.length())) and (x > (rig - word.length())))
+    {
+        return false;
+    }
+    else
     {
         int i = x;
         int j = y;
@@ -68,16 +77,19 @@ void putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
                 j++;
             }
         }
+        return check;
     }
 }
 
-void putS(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putS(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
 {
-    cout << "Inserisco a S" << endl;
-    if (y <= col - word.length())
+    // cout << "Inserisco a S" << endl;
+    if (y > col - word.length())
+    {
+        return false;
+    }
     {
         bool check;
-
         int j = y;
         while (j < y + word.length())
         {
@@ -101,6 +113,7 @@ void putS(string word, int x, int y, char mat[][colonne], int rig, int col)
                 j++;
             }
         }
+        return check;
     }
 }
 
@@ -191,12 +204,12 @@ void inizializzaConTrattino(char mat[][colonne], int rig, int col)
 void inserisciParola(string word, char mat[][colonne], int rig, int col)
 {
     srand(time(NULL));
-    //int coordX = rand() % colonne;
-    //int coordY = rand() % righe;
-    int coordX;
+    int coordX = rand() % colonne;
+    int coordY = rand() % righe;
+    /*int coordX;
     int coordY;
     cin >> coordX;
-    cin >> coordY;
+    cin >> coordY;*/
     cout << coordX << "   " << coordY << endl;
     // int dir = rand() % 8;
     int dir = 2;
@@ -204,17 +217,29 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
     case 0:
     {
-        putE(word, coordX, coordY, mat, rig, col);
+        while (!putE(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+        }
     }
     break;
     case 1:
     {
-        putSE(word, coordX, coordY, mat, rig, col);
+        while (!putSE(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+        }
     }
     break;
     case 2:
     {
-        putS(word, coordX, coordY, mat, rig, col);
+        while (!putS(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+        }
     }
     break;
     case 3:
