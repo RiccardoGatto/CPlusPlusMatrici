@@ -1,8 +1,8 @@
 #include <iostream>
 #include <random>
 using namespace std;
-const int righe = 9;
-const int colonne = 9;
+const int righe = 10;
+const int colonne = 10;
 
 void riempiMat(int mat[][colonne], int rig, int col)
 {
@@ -83,20 +83,17 @@ void diagonaleNove(int mat[][colonne], int rig, int col)
 {
     for (int i = 0; i < rig; i++)
     {
-        cout << i << "|  ";
-
         for (int j = 0; j < col; j++)
         {
-            if (i==j or i+j==8)
+            if (i == j or i + j == col-1)
             {
-                cout << "9 ";
+                mat[i][j] = 0;
             }
             else
             {
-                cout << "0 ";
+                mat[i][j] = 1;
             }
         }
-        cout << endl;
     }
 }
 
@@ -111,7 +108,12 @@ int main()
     stampaMagg5(matrice, righe, colonne);
     cout << "______________________________________________________\n\n";
     cout << "La somma di tutti i numeri della matrice e' " << sommaMat(matrice, righe, colonne) << endl;
+    diagonaleNove(matrice, righe, colonne);
     cout << "______________________________________________________\n\n";
     stampaTrattini(colonne);
-    diagonaleNove(matrice, righe, colonne);
+    stampaMat(matrice, righe, colonne);
+    cout << "______________________________________________________\n\n";
+    riempiMat(matrice, righe, colonne);
+    stampaTrattini(colonne);
+    stampaMat(matrice, righe, colonne);
 }
