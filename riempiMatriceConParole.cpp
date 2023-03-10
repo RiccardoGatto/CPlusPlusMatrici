@@ -6,7 +6,7 @@ using namespace std;
 const int righe = 35;
 const int colonne = 35;
 
-bool putE(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
+bool putE(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
 
     // cout << "Inserisco a E" << endl;
@@ -40,7 +40,7 @@ bool putE(string word, int x, int y, char mat[][colonne], int rig, int col) // F
     }
 }
 
-bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
+bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
     // cout << "Inserisco a SE" << endl;
     if ((x > (col - word.length())) and (x > (rig - word.length())))
@@ -81,7 +81,7 @@ bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col) // 
     }
 }
 
-bool putS(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
+bool putS(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
     // cout << "Inserisco a S" << endl;
     if (y > col - word.length())
@@ -233,7 +233,7 @@ bool putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
             i--;
             index++;
         }
-        cout << check << endl;
+
         if (check)
         {
             i = x;
@@ -292,9 +292,50 @@ bool putN(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-void putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
-    cout << "Inserisco a NE" << endl;
+    // cout << "Inserisco a NE" << endl;
+    if ((x > (col - word.length())) or (y < word.length() - 1))
+    {
+        return false;
+    }
+    else
+    {
+        bool check = true;
+        int i = x;
+        int j = y;
+        int index = 0;
+        while (index < word.length())
+        {
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+                break;
+            }
+            j--;
+            i++;
+            index++;
+        }
+
+        if (check)
+        {
+            i = x;
+            j = y;
+            index = 0;
+            while (index < word.length())
+            {
+                mat[j][i] = word.at(index);
+                i++;
+                j--;
+                index++;
+            }
+        }
+        return check;
+    }
 }
 
 void stampaIndici(char colonne)
@@ -364,10 +405,10 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     /*int coordX;
     int coordY;
     cin >> coordX;
-    cin >> coordY;*/
-    cout << coordX << "   " << coordY << endl;
-    // int dir = rand() % 4;
-    int dir = 6;
+    cin >> coordY;
+    cout << coordX << "   " << coordY << endl;*/
+    int dir = rand() % 4;
+    // int dir = 7;
     switch (dir)
     {
     case 0:
@@ -403,7 +444,6 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
-            // cout << coordX << "   " << coordY << endl;
         }
     }
     break;
@@ -413,7 +453,6 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
-            // cout << coordX << "   " << coordY << endl;
         }
     }
     break;
@@ -423,7 +462,6 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
-            
         }
     }
     break;
@@ -438,7 +476,11 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     break;
     case 7:
     {
-        putNE(word, coordX, coordY, mat, rig, col);
+        while (!putNE(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+        }
     }
     break;
     }
