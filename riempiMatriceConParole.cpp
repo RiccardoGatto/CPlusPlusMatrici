@@ -338,7 +338,7 @@ bool putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-void stampaIndici(char colonne)
+void stampaIndici(int colonne)
 {
     cout << "      ";
     for (int i = 0; i < colonne; i++)
