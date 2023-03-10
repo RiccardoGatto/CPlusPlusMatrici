@@ -3,8 +3,8 @@
 #include <string>
 #include <time.h>
 using namespace std;
-const int righe = 10;
-const int colonne = 10;
+const int righe = 35;
+const int colonne = 35;
 
 bool putE(string word, int x, int y, char mat[][colonne], int rig, int col) // FATTA
 {
@@ -117,24 +117,179 @@ bool putS(string word, int x, int y, char mat[][colonne], int rig, int col) // F
     }
 }
 
-void putSW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putSW(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
-    cout << "Inserisco a SW" << endl;
+    // cout << "Inserisco a SW" << endl;
+    if (x < word.length() - 1 or (y > (col - word.length())))
+    {
+        // cout << "non consentito"<< endl;
+        return false;
+    }
+    else
+    {
+        int i = x;
+        int j = y;
+        int index = 0;
+        bool check = true;
+        while (index < word.length())
+        {
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+                break;
+            }
+            i--;
+            j++;
+            index++;
+        }
+        if (check)
+        {
+            i = x;
+            j = y;
+            index = 0;
+            while (index < word.length())
+            {
+                mat[j][i] = word.at(index);
+                i--;
+                j++;
+                // cout << word.at(index) << "con indice " << index << endl;
+                index++;
+            }
+        }
+        return check;
+    }
 }
 
-void putW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putW(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
-    cout << "Inserisco a W" << endl;
+    // cout << "Inserisco a W" << endl;
+    bool check = true;
+    if (x < word.length() - 1)
+    {
+        return false;
+    }
+    else
+    {
+        int i = x;
+        int index = 0;
+        while (index < word.length())
+        {
+            if ((mat[y][i] == word.at(index)) or (mat[y][i] == '-'))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+                break;
+            }
+            i--;
+            index++;
+        }
+        if (check)
+        {
+            i = x;
+            index = 0;
+            while (index < word.length())
+            {
+                mat[y][i] = word.at(index);
+                i--;
+                index++;
+            }
+        }
+        return true;
+    }
 }
 
-void putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
-    cout << "Inserisco a NW" << endl;
+    // cout << "Inserisco a NW" << endl;
+    if ((x < word.length() - 1) or (y < word.length() - 1))
+    {
+        return false;
+    }
+    else
+    {
+        bool check = true;
+        int i = x;
+        int j = y;
+        int index = 0;
+        while (index < word.length())
+        {
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+                break;
+            }
+            j--;
+            i--;
+            index++;
+        }
+        cout << check << endl;
+        if (check)
+        {
+            i = x;
+            j = y;
+            index = 0;
+            while (index < word.length())
+            {
+                mat[j][i] = word.at(index);
+                i--;
+                j--;
+                index++;
+            }
+        }
+        return check;
+    }
 }
 
-void putN(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putN(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
-    cout << "Inserisco a N" << endl;
+    // cout << "Inserisco a N" << endl;
+    bool check = true;
+    if (y < word.length() - 1)
+    {
+        return false;
+    }
+    else
+    {
+        int j = y;
+        int index = 0;
+        while (index < word.length())
+        {
+            if ((mat[j][x] == word.at(index)) or (mat[j][x] == '-'))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+                break;
+            }
+            j--;
+            index++;
+        }
+        if (check)
+        {
+            j = y;
+            index = 0;
+            while (index < word.length())
+            {
+                mat[j][x] = word.at(index);
+                j--;
+                index++;
+            }
+        }
+        return check;
+    }
 }
 
 void putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
@@ -211,8 +366,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     cin >> coordX;
     cin >> coordY;*/
     cout << coordX << "   " << coordY << endl;
-    int dir = rand() % 3;
-    //int dir = 2;
+    // int dir = rand() % 4;
+    int dir = 6;
     switch (dir)
     {
     case 0:
@@ -244,22 +399,41 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     break;
     case 3:
     {
-        putSW(word, coordX, coordY, mat, rig, col);
+        while (!putSW(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+            // cout << coordX << "   " << coordY << endl;
+        }
     }
     break;
     case 4:
     {
-        putW(word, coordX, coordY, mat, rig, col);
+        while (!putW(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+            // cout << coordX << "   " << coordY << endl;
+        }
     }
     break;
     case 5:
     {
-        putNW(word, coordX, coordY, mat, rig, col);
+        while (!putNW(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+            
+        }
     }
     break;
     case 6:
     {
-        putN(word, coordX, coordY, mat, rig, col);
+        while (!putN(word, coordX, coordY, mat, rig, col))
+        {
+            coordX = rand() % colonne;
+            coordY = rand() % righe;
+        }
     }
     break;
     case 7:
