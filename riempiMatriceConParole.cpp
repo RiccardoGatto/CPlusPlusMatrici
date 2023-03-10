@@ -3,8 +3,8 @@
 #include <string>
 #include <time.h>
 using namespace std;
-const int righe = 35;
-const int colonne = 35;
+const int righe = 15;
+const int colonne = 15;
 
 bool putE(string word, int x, int y, char mat[][colonne], int rig, int col)
 {
@@ -19,7 +19,7 @@ bool putE(string word, int x, int y, char mat[][colonne], int rig, int col)
         bool check;
         for (int i = x; i < x + word.length(); i++)
         {
-            if (mat[y][i] == word.at(i - x) || mat[y][i] == '-')
+            if (mat[y][i] == word.at(i - x) || mat[y][i] == ' ')
             {
                 check = true;
             }
@@ -54,7 +54,7 @@ bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
         bool check = true;
         while (i < x + word.length())
         {
-            if ((mat[j][i] == word.at(i - x)) or (mat[j][i] == '-'))
+            if ((mat[j][i] == word.at(i - x)) or (mat[j][i] == ' '))
             {
                 check = true;
             }
@@ -93,7 +93,7 @@ bool putS(string word, int x, int y, char mat[][colonne], int rig, int col)
         int j = y;
         while (j < y + word.length())
         {
-            if ((mat[j][x] == word.at(j - y)) or (mat[j][x] == '-'))
+            if ((mat[j][x] == word.at(j - y)) or (mat[j][x] == ' '))
             {
                 check = true;
             }
@@ -133,7 +133,7 @@ bool putSW(string word, int x, int y, char mat[][colonne], int rig, int col)
         bool check = true;
         while (index < word.length())
         {
-            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == ' '))
             {
                 check = true;
             }
@@ -178,7 +178,7 @@ bool putW(string word, int x, int y, char mat[][colonne], int rig, int col)
         int index = 0;
         while (index < word.length())
         {
-            if ((mat[y][i] == word.at(index)) or (mat[y][i] == '-'))
+            if ((mat[y][i] == word.at(index)) or (mat[y][i] == ' '))
             {
                 check = true;
             }
@@ -220,7 +220,7 @@ bool putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
         int index = 0;
         while (index < word.length())
         {
-            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == ' '))
             {
                 check = true;
             }
@@ -265,7 +265,7 @@ bool putN(string word, int x, int y, char mat[][colonne], int rig, int col)
         int index = 0;
         while (index < word.length())
         {
-            if ((mat[j][x] == word.at(index)) or (mat[j][x] == '-'))
+            if ((mat[j][x] == word.at(index)) or (mat[j][x] == ' '))
             {
                 check = true;
             }
@@ -307,7 +307,7 @@ bool putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
         int index = 0;
         while (index < word.length())
         {
-            if ((mat[j][i] == word.at(index)) or (mat[j][i] == '-'))
+            if ((mat[j][i] == word.at(index)) or (mat[j][i] == ' '))
             {
                 check = true;
             }
@@ -368,21 +368,16 @@ void stampaMat(char mat[][colonne], int rig, int col)
         if (i < 10)
         {
             cout << i << " |  ";
-            for (int j = 0; j < col; j++)
-            {
-                cout << " " << mat[i][j] << " ";
-            }
-            cout << endl;
         }
         else
         {
             cout << i << "|  ";
-            for (int j = 0; j < col; j++)
-            {
-                cout << " " << mat[i][j] << " ";
-            }
-            cout << endl;
         }
+        for (int j = 0; j < col; j++)
+        {
+            cout << " " << mat[i][j] << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -392,7 +387,7 @@ void inizializzaConTrattino(char mat[][colonne], int rig, int col)
     {
         for (int j = 0; j < col; j++)
         {
-            mat[i][j] = '-';
+            mat[i][j] = ' ';
         }
     }
 }
@@ -407,7 +402,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     cin >> coordX;
     cin >> coordY;
     cout << coordX << "   " << coordY << endl;*/
-    int dir = rand() % 4;
+    int dir = rand() % 8;
     // int dir = 7;
     switch (dir)
     {
@@ -417,6 +412,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -426,6 +422,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -435,6 +432,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -444,6 +442,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -453,6 +452,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -462,6 +462,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -471,6 +472,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
@@ -480,6 +482,7 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
         {
             coordX = rand() % colonne;
             coordY = rand() % righe;
+            dir = rand() % 8;
         }
     }
     break;
