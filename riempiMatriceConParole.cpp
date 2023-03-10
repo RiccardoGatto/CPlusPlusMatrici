@@ -3,10 +3,10 @@
 #include <string>
 #include <time.h>
 using namespace std;
-const int righe = 15;
-const int colonne = 15;
+const int RIGHE = 15;
+const int COLONNE = 15;
 
-bool putE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putE(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
 
     // cout << "Inserisco a E" << endl;
@@ -40,7 +40,7 @@ bool putE(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putSE(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a SE" << endl;
     if ((x > (col - word.length())) and (x > (rig - word.length())))
@@ -81,7 +81,7 @@ bool putSE(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putS(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putS(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a S" << endl;
     if (y > col - word.length())
@@ -117,7 +117,7 @@ bool putS(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putSW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putSW(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a SW" << endl;
     if (x < word.length() - 1 or (y > (col - word.length())))
@@ -164,7 +164,7 @@ bool putSW(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putW(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a W" << endl;
     bool check = true;
@@ -205,7 +205,7 @@ bool putW(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putNW(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a NW" << endl;
     if ((x < word.length() - 1) or (y < word.length() - 1))
@@ -251,7 +251,7 @@ bool putNW(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putN(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putN(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a N" << endl;
     bool check = true;
@@ -292,7 +292,7 @@ bool putN(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-bool putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
+bool putNE(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
     // cout << "Inserisco a NE" << endl;
     if ((x > (col - word.length())) or (y < word.length() - 1))
@@ -338,10 +338,10 @@ bool putNE(string word, int x, int y, char mat[][colonne], int rig, int col)
     }
 }
 
-void stampaIndici(int colonne)
+void stampaIndici(int COLONNE)
 {
     cout << "      ";
-    for (int i = 0; i < colonne; i++)
+    for (int i = 0; i < COLONNE; i++)
     {
         if (i < 10)
         {
@@ -353,7 +353,7 @@ void stampaIndici(int colonne)
         }
     }
     cout << endl;
-    int trattini = colonne * 3 + 6;
+    int trattini = COLONNE * 3 + 6;
     for (int i = 0; i < trattini; i++)
     {
         cout << "-";
@@ -361,7 +361,7 @@ void stampaIndici(int colonne)
     cout << endl;
 }
 
-void stampaMat(char mat[][colonne], int rig, int col)
+void stampaMat(char mat[][COLONNE], int rig, int col)
 {
     for (int i = 0; i < rig; i++)
     {
@@ -381,7 +381,7 @@ void stampaMat(char mat[][colonne], int rig, int col)
     }
 }
 
-void inizializzaConTrattino(char mat[][colonne], int rig, int col)
+void inizializzaConTrattino(char mat[][COLONNE], int rig, int col)
 {
     for (int i = 0; i < rig; i++)
     {
@@ -392,11 +392,11 @@ void inizializzaConTrattino(char mat[][colonne], int rig, int col)
     }
 }
 
-void inserisciParola(string word, char mat[][colonne], int rig, int col)
+void inserisciParola(string word, char mat[][COLONNE], int rig, int col)
 {
     srand(time(NULL));
-    int coordX = rand() % colonne;
-    int coordY = rand() % righe;
+    int coordX = rand() % COLONNE;
+    int coordY = rand() % RIGHE;
     /*int coordX;
     int coordY;
     cin >> coordX;
@@ -410,8 +410,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putE(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -420,8 +420,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putSE(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -430,8 +430,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putS(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -440,8 +440,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putSW(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -450,8 +450,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putW(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -460,8 +460,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putNW(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -470,8 +470,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putN(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -480,8 +480,8 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
     {
         while (!putNE(word, coordX, coordY, mat, rig, col))
         {
-            coordX = rand() % colonne;
-            coordY = rand() % righe;
+            coordX = rand() % COLONNE;
+            coordY = rand() % RIGHE;
             dir = rand() % 8;
         }
     }
@@ -491,17 +491,17 @@ void inserisciParola(string word, char mat[][colonne], int rig, int col)
 
 int main()
 {
-    char matrice[righe][colonne];
-    inizializzaConTrattino(matrice, righe, colonne);
-    stampaIndici(colonne);
-    stampaMat(matrice, righe, colonne);
+    char matrice[RIGHE][COLONNE];
+    inizializzaConTrattino(matrice, RIGHE, COLONNE);
+    stampaIndici(COLONNE);
+    stampaMat(matrice, RIGHE, COLONNE);
     string parola;
     while (true)
     {
         cout << "Parola da inserire: ";
         cin >> parola;
-        inserisciParola(parola, matrice, righe, colonne);
-        stampaIndici(colonne);
-        stampaMat(matrice, righe, colonne);
+        inserisciParola(parola, matrice, RIGHE, COLONNE);
+        stampaIndici(COLONNE);
+        stampaMat(matrice, RIGHE, COLONNE);
     }
 }
