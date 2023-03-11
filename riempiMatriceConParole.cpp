@@ -501,7 +501,6 @@ int main()
         cout << "Parola da inserire: ";
         cin >> parola;
         inserisciParola(parola, matrice, RIGHE, COLONNE);
-        stampaIndici(COLONNE);
         stampaMat(matrice, RIGHE, COLONNE);
     }
 }
