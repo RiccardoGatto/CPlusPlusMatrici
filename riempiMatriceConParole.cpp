@@ -201,7 +201,7 @@ bool putW(string word, int x, int y, char mat[][COLONNE], int rig, int col)
                 index++;
             }
         }
-        return true;
+        return check;
     }
 }
 
