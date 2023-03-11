@@ -3,8 +3,8 @@
 #include <string>
 #include <time.h>
 using namespace std;
-const int RIGHE = 15;
-const int COLONNE = 15;
+const int RIGHE = 30;
+const int COLONNE = 30;
 
 bool putE(string word, int x, int y, char mat[][COLONNE], int rig, int col)
 {
@@ -363,6 +363,7 @@ void stampaIndici(int COLONNE)
 
 void stampaMat(char mat[][COLONNE], int rig, int col)
 {
+    stampaIndici(COLONNE);
     for (int i = 0; i < rig; i++)
     {
         if (i < 10)
@@ -493,7 +494,6 @@ int main()
 {
     char matrice[RIGHE][COLONNE];
     inizializzaConTrattino(matrice, RIGHE, COLONNE);
-    stampaIndici(COLONNE);
     stampaMat(matrice, RIGHE, COLONNE);
     string parola;
     while (true)
